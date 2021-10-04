@@ -3,6 +3,14 @@ import { useDrag, useDrop } from 'react-dnd';
 import PropTypes from 'prop-types';
 import { ItemTypes } from './ItemTypes';
 
+const style = {
+    border: '1px dashed gray',
+    padding: '0.5rem 1rem',
+    marginBottom: '.5rem',
+    backgroundColor: 'white',
+    cursor: 'move',
+};
+
 const ToDoItem = ({ index, id, moveCard, todoItem, todoList, setTodoList }) => {
 
     const ref = useRef(null);
@@ -63,9 +71,8 @@ const ToDoItem = ({ index, id, moveCard, todoItem, todoList, setTodoList }) => {
     const opacity = isDragging ? 0 : 1;
     drag(drop(ref));
 
-
     return (
-        <li className="todoapp__item">
+        <li ref={ref} style={{ ...style, opacity }} data-handler-id={handlerId} className="todoapp__item">
 
             {/* 아이템 내용 */}
             <span className="todoapp__item-ctx">{todoItem.value.label}</span>
