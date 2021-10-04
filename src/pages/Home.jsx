@@ -1,28 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import InputBox from '../components/InputBox';
-import UserInputBox from '../components/UserInputBox';
 import ToDoItemList from '../components/ToDoItemList';
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
-
-const DEFAULT_USERS = {
-  A: {
-    label: 'A',
-    todoList: [],
-  },
-  B: {
-    label: 'B',
-    todoList: [],
-  },
-  C: {
-    label: 'C',
-    todoList: [],
-  },
-  D: {
-    label: 'D',
-    todoList: [],
-  },
-}
 
 const commands = [
     { value: "leave", label: "퇴장" },
@@ -31,16 +11,16 @@ const commands = [
     { value: "present", label: "스푼" },
 ];
 
-const Home = () => {
-    const [users, setUsers] = useState(DEFAULT_USERS)
-    const [seletedUser, setSelectedUser] = useState(DEFAULT_USERS['A'])
-    const [todoList, setTodoList] = useState(seletedUser.todoList);
+const Home = ({ list, setList }) => {
+    const [todoList, setTodoList] = useState(list);
     
+    useEffect(() => {
+      setList(todoList)
+      console.log('setList')
+    })
+  
     return (
         <div className="homepage__container">
-            {/* 청취자 Type 선택 */}
-            <UserInputBox users={users} setSelectedUser={setSelectedUser} />
-
             {/* ToDo Item을 추가할 수 있는 input 박스 */}
             <InputBox options={commands} todoList={todoList} setTodoList={setTodoList} />
 
