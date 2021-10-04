@@ -16,6 +16,7 @@ const ToDoItemList = ({ title, todoList, setTodoList }) => {
             ],
         }));
     }, [todoList]);
+    
     const renderCard = (todoItem, index) => {
         return (
             <ToDoItem

@@ -1,8 +1,9 @@
-import React, { useCallback } from 'react'
+import React, { useRef, useCallback } from 'react'
 import Select from 'react-select'
 
-const UserInputBox = ({ users, setSelectedUser }) => {
-  const handleChange = useCallback((inputValue) => setSelectedUser(inputValue), [])
+const UserInputBox = ({ users, user, setUser }) => {
+  const inputRef = useRef(null)
+  const handleChange = useCallback((inputValue) => setUser(inputValue), [])
   return (
     <div className="todoapp__inputbox">
       <Select
@@ -10,7 +11,9 @@ const UserInputBox = ({ users, setSelectedUser }) => {
         name="todoItem"
         placeholder="청취자 타입을 선택해주세요"
         className="todoapp__inputbox-inp"
-        options={Object.keys(users).map(user => ({ label: user }))}
+        options={users}
+        ref={inputRef}
+        value={user}
         onChange={handleChange}
       />
     </div>
