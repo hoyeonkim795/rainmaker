@@ -15,7 +15,7 @@ const ToDoItem = ({ index, id, moveCard, todoItem, todoList, setTodoList }) => {
 
     const ref = useRef(null);
     const [{ handlerId }, drop] = useDrop({
-        accept: ItemTypes.CARD,
+        accept: ItemTypes.TodoItem,
         collect(monitor) {
             return {
                 handlerId: monitor.getHandlerId(),
@@ -32,9 +32,9 @@ const ToDoItem = ({ index, id, moveCard, todoItem, todoList, setTodoList }) => {
                 return;
             }
             // Determine rectangle on screen
-            const hoverBoundingRect = ref.current?.getBoundingClientRect();
+            const hoverBoundingRect = ref.current?.getBoundingClientRect(); // rendering 된 사각형에 값을 받아옴.
             // Get vertical middle
-            const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
+            const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2; //다른 컴포넌트의 높이값 절반 이상일때
             // Determine mouse position
             const clientOffset = monitor.getClientOffset();
             // Get pixels to the top
@@ -60,7 +60,7 @@ const ToDoItem = ({ index, id, moveCard, todoItem, todoList, setTodoList }) => {
         },
     });
     const [{ isDragging }, drag] = useDrag({
-        type: ItemTypes.CARD,
+        type: ItemTypes.TodoItem,
         item: () => {
             return { id, index };
         },

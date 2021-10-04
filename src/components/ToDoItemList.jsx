@@ -37,8 +37,6 @@ const ToDoItemList = ({ title, todoList, setTodoList }) => {
             <ul className="todoapp__list-ul">
                 {todoList && // todoList가 있을때만 출력
                 todoList.map((todoItem, i) => renderCard(todoItem, i)
-                    // map을 이용하여 ToDoItem을 출력
-
                 )}
             </ul>
         </div>
