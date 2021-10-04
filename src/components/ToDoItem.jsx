@@ -3,7 +3,7 @@ import { useDrag, useDrop } from 'react-dnd';
 import PropTypes from 'prop-types';
 import { ItemTypes } from './ItemTypes';
 
-const ToDoItem = ({ todoItem, todoList, setTodoList }) => {
+const ToDoItem = ({ index, id, moveCard, todoItem, todoList, setTodoList }) => {
 
     const ref = useRef(null);
     const [{ handlerId }, drop] = useDrop({
